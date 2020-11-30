@@ -4,7 +4,7 @@ import { Observable, throwError as _observableThrow, of as _observableOf } from 
 import { mergeMap as _observableMergeMap, catchError as _observableCatch } from 'rxjs/operators';
 import { ServiceHelper } from '../common/services/service-helper.service';
 import { IPlayer } from './models/iplayer';
-import { NewPlayerCommand } from './models/newplayercommand';
+import { INewPlayerCommand } from './models/newplayercommand';
 import { UpdatePlayerCommand } from './models/updateplayercommand';
 
 @Injectable({
@@ -15,7 +15,7 @@ export class PlayerService {
   constructor(private _http: HttpClient, @Inject('BASE_URL') private _baseUrl: string, private _helper: ServiceHelper) { }
 
   get(): Observable<IPlayer[]> {
-    let url_ = this._baseUrl + "/api/Players";
+    let url_ = this._baseUrl + "api/Players";
     url_ = url_.replace(/[?&]$/, "");
 
     let options_ : any = {
@@ -62,7 +62,7 @@ private processGet(response: HttpResponseBase): Observable<IPlayer[]> {
 }
 
 getFreeAgents(): Observable<IPlayer[]> {
-    let url_ = this._baseUrl + "/api/Players/free-agents";
+    let url_ = this._baseUrl + "api/Players/free-agents";
     url_ = url_.replace(/[?&]$/, "");
 
     let options_ : any = {
@@ -109,7 +109,7 @@ private processGetFreeAgents(response: HttpResponseBase): Observable<IPlayer[]> 
 }
 
 getByClub(clubId: number): Observable<IPlayer[]> {
-  let url_ = this._baseUrl + "/api/Players/clubs/{clubId}";
+  let url_ = this._baseUrl + "api/Players/clubs/{clubId}";
   if (clubId === undefined || clubId === null)
       throw new Error("The parameter 'clubId' must be defined.");
   url_ = url_.replace("{clubId}", encodeURIComponent("" + clubId));
@@ -159,7 +159,7 @@ private processGetByClub(response: HttpResponseBase): Observable<IPlayer[]> {
 }
 
 getDetail(id: number): Observable<IPlayer> {
-  let url_ = this._baseUrl + "/api/Players/{id}";
+  let url_ = this._baseUrl + "api/Players/{id}";
   if (id === undefined || id === null)
       throw new Error("The parameter 'id' must be defined.");
   url_ = url_.replace("{id}", encodeURIComponent("" + id));
@@ -208,8 +208,8 @@ private processGetDetail(response: HttpResponseBase): Observable<IPlayer> {
   return _observableOf<IPlayer>(<any>null);
 }
 
-new(command: NewPlayerCommand): Observable<void> {
-    let url_ = this._baseUrl + "/api/Players";
+new(command: INewPlayerCommand): Observable<void> {
+    let url_ = this._baseUrl + "api/Players";
     url_ = url_.replace(/[?&]$/, "");
 
     const content_ = JSON.stringify(command);
@@ -257,7 +257,7 @@ private processNew(response: HttpResponseBase): Observable<void> {
 }
 
 update(id: number, body: UpdatePlayerCommand): Observable<void> {
-    let url_ = this._baseUrl + "/api/Players/{id}";
+    let url_ = this._baseUrl + "api/Players/{id}";
     if (id === undefined || id === null)
         throw new Error("The parameter 'id' must be defined.");
     url_ = url_.replace("{id}", encodeURIComponent("" + id));
@@ -308,7 +308,7 @@ private processUpdate(response: HttpResponseBase): Observable<void> {
 }
 
 delete(id: number): Observable<void> {
-    let url_ = this._baseUrl + "/api/Players/{id}";
+    let url_ = this._baseUrl + "api/Players/{id}";
     if (id === undefined || id === null)
         throw new Error("The parameter 'id' must be defined.");
     url_ = url_.replace("{id}", encodeURIComponent("" + id));

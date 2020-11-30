@@ -65,7 +65,7 @@ export class CountryService {
   }
 
   getDetail(id: number): Observable<ICountry> {
-    let url_ = this._baseUrl + "/api/Countries/{id}";
+    let url_ = this._baseUrl + "api/Countries/{id}";
     if (id === undefined || id === null)
         throw new Error("The parameter 'id' must be defined.");
     url_ = url_.replace("{id}", encodeURIComponent("" + id));
@@ -214,7 +214,7 @@ protected processGetDetail(response: HttpResponseBase): Observable<ICountry> {
   }
 
   delete(id: number): Observable<void> {
-      let url_ = this._baseUrl + "/api/Countries/{id}";
+      let url_ = this._baseUrl + "api/Countries/{id}";
       if (id === undefined || id === null)
           throw new Error("The parameter 'id' must be defined.");
       url_ = url_.replace("{id}", encodeURIComponent("" + id));

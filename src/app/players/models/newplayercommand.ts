@@ -1,6 +1,6 @@
 import { Foot } from './iplayer';
 
-export interface NewPlayerCommand {
+export interface INewPlayerCommand {
     firstName: string;
     lastName: string;
     countryId: number;

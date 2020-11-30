@@ -20,7 +20,7 @@ export class ContinentService {
       observe: "response",
       responseType: "blob",
       headers: new HttpHeaders({
-        "Accept": "text/plain"
+        "Accept": "application/json"
       })
     };
 

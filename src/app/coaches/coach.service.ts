@@ -15,7 +15,7 @@ export class CoachService {
   constructor(private _http: HttpClient, @Inject('BASE_URL') private _baseUrl: string, private _helper: ServiceHelper) { }
 
   get(): Observable<ICoach[]> {
-    let url_ = this._baseUrl + "/api/Coaches";
+    let url_ = this._baseUrl + "api/Coaches";
     url_ = url_.replace(/[?&]$/, "");
     let options_ : any = {
         observe: "response",
@@ -60,7 +60,7 @@ export class CoachService {
   }
 
   getAvailable(): Observable<ICoach[]> {
-    let url_ = this._baseUrl + "/api/Coaches/available";
+    let url_ = this._baseUrl + "api/Coaches/available";
     url_ = url_.replace(/[?&]$/, "");
     let options_ : any = {
         observe: "response",
@@ -105,7 +105,7 @@ export class CoachService {
   }
 
   getDetail(id: number): Observable<ICoach> {
-    let url_ = this._baseUrl + "/api/Coaches/{id}";
+    let url_ = this._baseUrl + "api/Coaches/{id}";
     if (id === undefined || id === null)
         throw new Error("The parameter 'id' must be defined.");
     url_ = url_.replace("{id}", encodeURIComponent("" + id));
@@ -155,7 +155,7 @@ export class CoachService {
   }
 
   new(command: INewCoachCommand): Observable<void> {
-      let url_ = this._baseUrl + "/api/Coaches";
+      let url_ = this._baseUrl + "api/Coaches";
       url_ = url_.replace(/[?&]$/, "");
 
       const content_ = JSON.stringify(command);
@@ -204,7 +204,7 @@ export class CoachService {
 
 
   update(id: number, command: IUpdateCoachCommand): Observable<void> {
-      let url_ = this._baseUrl + "/api/Coaches/{id}";
+      let url_ = this._baseUrl + "api/Coaches/{id}";
       if (id === undefined || id === null)
           throw new Error("The parameter 'id' must be defined.");
       url_ = url_.replace("{id}", encodeURIComponent("" + id));
@@ -255,7 +255,7 @@ export class CoachService {
   }
 
     delete(id: number): Observable<void> {
-        let url_ = this._baseUrl + "/api/Coaches/{id}";
+        let url_ = this._baseUrl + "api/Coaches/{id}";
       if (id === undefined || id === null)
           throw new Error("The parameter 'id' must be defined.");
       url_ = url_.replace("{id}", encodeURIComponent("" + id));

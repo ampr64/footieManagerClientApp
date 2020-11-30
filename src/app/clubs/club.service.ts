@@ -15,8 +15,8 @@ export class ClubService {
   constructor(private _http: HttpClient, @Inject('BASE_URL') private _baseUrl: string, private _helper: ServiceHelper) { }
 
   get(): Observable<IClub[]> {
-    let targetUrl_ = this._baseUrl + "/api/Clubs";
-    targetUrl_ = targetUrl_.replace(/[?&]$/, "");
+    let url_ = this._baseUrl + "api/Clubs";
+    url_ = url_.replace(/[?&]$/, "");
 
     let options_: any = {
       observe: "response",
@@ -26,7 +26,7 @@ export class ClubService {
       })
     };
 
-    return this._http.request("get", targetUrl_, options_).pipe(_observableMergeMap((response_: any) => {
+    return this._http.request("get", url_, options_).pipe(_observableMergeMap((response_: any) => {
       return this.processGet(response_);
     })).pipe(_observableCatch((response_: any) => {
       if (response_ instanceof HttpResponseBase) {
@@ -62,11 +62,11 @@ export class ClubService {
   }
 
   getDetail(id: number): Observable<IClub> {
-    let targetUrl_ = this._baseUrl + "/api/Clubs/{id}";
+    let url_ = this._baseUrl + "api/Clubs/{id}";
     if (id === undefined || id === null)
       throw new Error("The parameter 'id' must be defined.");
-    targetUrl_ = targetUrl_.replace("{id}", encodeURIComponent("" + id));
-    targetUrl_ = targetUrl_.replace(/[?&]$/, "");
+    url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    url_ = url_.replace(/[?&]$/, "");
 
     let options_: any = {
       observe: "response",
@@ -76,7 +76,7 @@ export class ClubService {
       })
     };
 
-    return this._http.request("get", targetUrl_, options_).pipe(_observableMergeMap((response_: any) => {
+    return this._http.request("get", url_, options_).pipe(_observableMergeMap((response_: any) => {
       return this.processGetDetail(response_);
     })).pipe(_observableCatch((response_: any) => {
       if (response_ instanceof HttpResponseBase) {
@@ -112,7 +112,7 @@ export class ClubService {
   }
 
   getByLeague(leagueId: number): Observable<IClub[]> {
-    let url_ = this._baseUrl + "/api/Clubs/leagues/{leagueId}";
+    let url_ = this._baseUrl + "api/Clubs/leagues/{leagueId}";
     if (leagueId === undefined || leagueId === null)
         throw new Error("The parameter 'leagueId' must be defined.");
     url_ = url_.replace("{leagueId}", encodeURIComponent("" + leagueId));
@@ -162,7 +162,7 @@ protected processGetByLeague(response: HttpResponseBase): Observable<IClub[]> {
 }
 
   new(command: INewClubCommand): Observable<number> {
-    let targetUrl_ = this._baseUrl + "/api/Clubs";
+    let targetUrl_ = this._baseUrl + "api/Clubs";
     targetUrl_ = targetUrl_.replace(/[?&]$/, "");
 
     const content_ = JSON.stringify(command);
@@ -213,7 +213,7 @@ protected processGetByLeague(response: HttpResponseBase): Observable<IClub[]> {
   }
 
   update(id: number, command: IUpdateClubCommand): Observable<void> {
-    let targetUrl_ = this._baseUrl + "/api/Clubs/{id}";
+    let targetUrl_ = this._baseUrl + "api/Clubs/{id}";
     if (id === undefined || id === null)
       throw new Error("The parameter 'id' must be defined.");
     if (command === undefined || command === null)
@@ -267,11 +267,11 @@ protected processGetByLeague(response: HttpResponseBase): Observable<IClub[]> {
   }
 
   delete(id: number): Observable<void> {
-    let targetUrl_ = this._baseUrl + "/api/Clubs/{id}";
+    let url_ = this._baseUrl + "api/Clubs/{id}";
     if (id === undefined || id === null)
       throw new Error("The parameter 'id' must be defined.");
-    targetUrl_ = targetUrl_.replace("{id}", encodeURIComponent("" + id));
-    targetUrl_ = targetUrl_.replace(/[?&]$/, "");
+    url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    url_ = url_.replace(/[?&]$/, "");
 
     let options_: any = {
       observe: "response",
@@ -280,7 +280,7 @@ protected processGetByLeague(response: HttpResponseBase): Observable<IClub[]> {
       })
     };
 
-    return this._http.request("delete", targetUrl_, options_).pipe(_observableMergeMap((response_: any) => {
+    return this._http.request("delete", url_, options_).pipe(_observableMergeMap((response_: any) => {
       return this.processDelete(response_);
     })).pipe(_observableCatch((response_: any) => {
       if (response_ instanceof HttpResponseBase) {
