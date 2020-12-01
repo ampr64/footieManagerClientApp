@@ -13,6 +13,8 @@ import { ClubDetailComponent } from './clubs/components/club-detail/club-detail.
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StadiumDetailComponent } from './stadiums/components/stadium-detail/stadium-detail.component';
 import { StadiumListComponent } from './stadiums/components/stadium-list/stadium-list.component';
+import { NavbarComponent } from './common/components/navbar/navbar.component';
+import { CountryDetailComponent } from './countries/components/country-detail/country-detail.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { StadiumListComponent } from './stadiums/components/stadium-list/stadium
     ClubDetailComponent,
     StadiumDetailComponent,
     StadiumListComponent,
+    NavbarComponent,
+    CountryDetailComponent,
   ],
   imports: [
     BrowserModule,

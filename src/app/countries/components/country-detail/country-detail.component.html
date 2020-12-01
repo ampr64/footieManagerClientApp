@@ -1,0 +1,8 @@
+<div *ngFor="let clubByLeague of clubByLeagues">
+    <ngb-accordion #acc="ngbAccordion" [closeOthers]="true">
+        <ngb-panel title={{clubByLeague}}>
+            <ng-template ngbPanelContent>
+            </ng-template>
+        </ngb-panel>
+    </ngb-accordion>
+</div>
