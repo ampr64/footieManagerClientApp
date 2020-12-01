@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { throwError } from 'rxjs';
 import { ClubService } from 'src/app/clubs/club.service';
-import { IClub } from 'src/app/clubs/models/iclub';
 import { LeagueService } from 'src/app/leagues/league.service';
 import { ILeague } from 'src/app/leagues/models/ileague';
 import { CountryService } from '../../country.service';
@@ -16,7 +15,7 @@ import { ICountry } from '../../models/icountry';
 export class CountryDetailComponent implements OnInit {
   private id: number;
   country: ICountry;
-  clubByLeagues: { league: ILeague, clubs: IClub[] }[]; //league: ILeague, clubs: IClub[]];
+  leagues: ILeague[];
 
   constructor(private _service: CountryService,
     private _leagueService: LeagueService,
@@ -24,16 +23,15 @@ export class CountryDetailComponent implements OnInit {
     private router: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.id = this.router.snapshot.params['id'] ?? throwError("id query parameter couldn't be retrieved");
-    let leagues: ILeague[];
-    
+    this.id = this.router.snapshot.params['id'] ?? throwError("id query parameter couldn't be retrieved");    
     this.getCountry();
     
     this._leagueService.getByCountry(this.id).subscribe(
-      result => leagues = result,
+      result => this.leagues = result,
       error => console.log(error),
-      () => leagues.forEach(league => this._clubService.getByLeague(league.id).subscribe(
-        clubs => this.clubByLeagues.push({league, clubs})
+      () => this.leagues.forEach(league => this._clubService.getByLeague(league.id).subscribe(
+        clubs => league.clubs = clubs,
+        err => console.log("error fetching clubs for league " + league.id, err)
         )
       )
     );
