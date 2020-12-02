@@ -2,3 +2,9 @@
     width: 55px;
     height: 65px;
 }
+
+.league-container{
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+}

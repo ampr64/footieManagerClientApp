@@ -1,28 +1,30 @@
-<div *ngFor="let league of leagues">
-    <ngb-accordion #acc="ngbAccordion" [closeOthers]="true">
-        <ngb-panel title="{{league.name}}">
-            <ng-template ngbPanelContent>
-                <table class="table" *ngIf="league.clubs">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Club</th>
-                            <th>Trophies</th>
-                            <th>Squad size</th>
-                            <th>Year founded</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let club of league.clubs">
-                            <td><img [src]="club.badgeImageUrl" alt="" class="badge-img"></td>
-                            <td><a [routerLink]="['/club/', club.id]">{{club.name}}</a></td>
-                            <td>{{club.trophyCount}}</td>
-                            <td>{{club.squadCount}}</td>
-                            <td>{{club.yearFounded}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </ng-template>
-        </ngb-panel>
-    </ngb-accordion>
+<div class="league-container">
+    <div *ngFor="let league of leagues">
+        <ngb-accordion #acc="ngbAccordion" [closeOthers]="true">
+            <ngb-panel title="{{league.name}}">
+                <ng-template ngbPanelContent>
+                    <table class="table" *ngIf="league.clubs">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Club</th>
+                                <th>Trophies</th>
+                                <th>Squad size</th>
+                                <th>Year founded</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let club of league.clubs">
+                                <td><img [src]="club.badgeImageUrl" alt="" class="badge-img"></td>
+                                <td><a [routerLink]="['/club/', club.id]">{{club.name}}</a></td>
+                                <td>{{club.trophyCount}}</td>
+                                <td>{{club.squadCount}}</td>
+                                <td>{{club.yearFounded}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </ng-template>
+            </ngb-panel>
+        </ngb-accordion>
+    </div>
 </div>

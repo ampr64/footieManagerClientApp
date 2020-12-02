@@ -1,20 +1,26 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" [routerLink]="['/']">
-        <img src="../../../assets/img/logo_footie_manager.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
-        Home
-    </a>
-    <div class="container">
+<ul class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <li class="nav-item">
+        <a class="navbar-brand" [routerLink]="['/']">
+            <img src="../../../assets/img/logo_footie_manager.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
+            Home
+        </a>
+    </li>
+    <li class="nav-item">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Player or coach name..."
-                    aria-label="Search">
-                <button class="btn btn-outline-primary my-2 my-sm-0" type="button"
-                    class="btn btn-primary">Search</button>
-            </form>
+            <div ngbDropdown class="d-inline-block">
+                <button class="btn btn-outline-light" id="dropdownBasic1" ngbDropdownToggle>Manage</button>
+                <div ngbDropdownMenu aria-labelledby="navbarDropdown2" class="dropdown-menu dropdown-menu-right">
+                    <button ngbDropdownItem [routerLink]="['/']">Players</button>
+                    <button ngbDropdownItem [routerLink]="['/']">Coaches</button>
+                    <button ngbDropdownItem [routerLink]="['/']">Clubs</button>
+                    <button ngbDropdownItem [routerLink]="['/']">Leagues</button>
+                    <button ngbDropdownItem [routerLink]="['/']">Stadiums</button>
+                </div>
+            </div>
         </div>
-    </div>
-</nav>
+    </li>
+</ul>
