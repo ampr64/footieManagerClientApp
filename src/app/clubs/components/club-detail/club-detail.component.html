@@ -1,4 +1,4 @@
-<div class="container" *ngIf="club">
+<!-- <div class="container" *ngIf="club">
     <div class="club-badge">
         <img src="{{club.badgeImageUrl}}" alt="">
     </div>
@@ -12,6 +12,34 @@
     <app-stadium-card [stadium]="club.stadium"></app-stadium-card>
     <app-coach-card [coach]="club.coach"></app-coach-card>
     <div>
+        <app-club-squad [squad]="club.squad"></app-club-squad>
+    </div>
+</div> -->
+
+<div class="container"  *ngIf="club">
+    <div class="header">
+        <div class="club">
+            <div class="club-badge">
+                <img src="{{club.badgeImageUrl}}" alt="">
+            </div>
+            <div class="club-info">
+                <h1>{{club.name}}</h1>
+                <span>President: {{club.president}}</span>
+                <span>Year founded: {{club.yearFounded}}</span>
+                <span>Trophies: {{club.trophyCount}}</span>
+                <span>Squad size: {{club.squadCount}}</span>
+            </div>
+        </div>
+        <div class="stadium-info">
+            <app-stadium-card [stadium]="club.stadium"></app-stadium-card>
+        </div>
+    </div>
+    <div class="team-info">
+        <h1>Coach</h1>
+        <app-coach-card [coach]="club.coach"></app-coach-card>
+    </div>
+    <div class="team-info">
+        <h1>Team</h1>
         <app-club-squad [squad]="club.squad"></app-club-squad>
     </div>
 </div>

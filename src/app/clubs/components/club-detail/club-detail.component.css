@@ -1,19 +1,47 @@
 .container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   background-color: lightgray;
 }
+
+.header {
+  background-color: darkgray;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
 .content {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
 }
 
-.header {
-  background-color: darkgray;
+.club{
   display: flex;
+  flex-direction: row;
+}
+
+
+.stadium-info{
+  margin-right: 10px;
+}
+
+.club-info{
+  display: flex;
+  flex-direction: column;
+}
+
+.team-info {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 150px;
-  width: 100%;
+  padding: 20px;
+}
+
+h1{
+  margin-bottom: 30px;
 }
