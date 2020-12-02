@@ -18,7 +18,7 @@ import { PlayerService } from '../../player.service';
 })
 export class PlayerFormComponent implements OnInit {
   id: number;
-  redirectionUrl = '/players';
+  redirectionUrl = 'management/players';
   playerForm: FormGroup;
   isNewMode: boolean;
   clubs: IClub[];
@@ -115,7 +115,7 @@ export class PlayerFormComponent implements OnInit {
     }
   }
 
-  cancel(): void {
-
+  return(): void {
+    this.router.navigate([this.redirectionUrl]);
   }
 }

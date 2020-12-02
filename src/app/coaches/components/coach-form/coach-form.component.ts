@@ -105,8 +105,8 @@ export class CoachFormComponent implements OnInit {
     }
   }
 
-  cancel(): void {
-
+  return(): void {
+    this.router.navigate([this.redirectionUrl]);
   }
 
 }

@@ -92,16 +92,16 @@ export class ClubFormComponent implements OnInit {
     if (this.clubForm.valid) {
       const club = { ...this.clubForm.value } as IClub;
       if (this.isNewMode) {
-        this._service.new(club).subscribe();
+        this._service.new(club).subscribe(() => this.return());
       }
       else {
-        this._service.update(this.id, club).subscribe();
+        this._service.update(this.id, club).subscribe(() => this.return());
       }
     }
   }
 
-  cancel(): void {
-
+  return(): void {
+    this.router.navigate([this.redirectionUrl]);
   }
 
 }
