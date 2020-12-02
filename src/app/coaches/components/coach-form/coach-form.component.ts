@@ -18,7 +18,7 @@ import { ICoach } from '../../models/icoach';
 })
 export class CoachFormComponent implements OnInit {
   id: number;
-  redirectionUrl = '/coaches';
+  redirectionUrl = 'management/coaches';
   coachForm: FormGroup;
   isNewMode: boolean;
   clubs: IClub[];
@@ -55,10 +55,10 @@ export class CoachFormComponent implements OnInit {
       height: [140, [Validators.required, Validators.min(140), Validators.max(250)]],
       weight: [45, [Validators.required, Validators.min(45), Validators.max(180)]],
       salary: [null]
-    }, );
+    });
 
     if (!this.isNewMode) {
-      this.patchForm()
+      this.patchForm();
     }
   }
 
@@ -78,9 +78,9 @@ export class CoachFormComponent implements OnInit {
 
   patchForm(): void {
     this._service.getDetail(this.id).subscribe(
-      player => {
-        this.coachForm.patchValue(player);
-        this.selectedBirthDate = this.convertToNgbDate(player.birthDate);
+      coach => {
+        this.coachForm.patchValue(coach);
+        this.selectedBirthDate = this.convertToNgbDate(coach.birthDate);
       },
       error => console.log(error),
     );

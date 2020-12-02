@@ -22,6 +22,7 @@ import { StadiumCardComponent } from './stadiums/components/stadium-card/stadium
 import { FreeAgentListComponent } from './players/components/free-agent-list/free-agent-list.component';
 import { PlayerFormComponent } from './players/components/player-form/player-form.component';
 import { CoachFormComponent } from './coaches/components/coach-form/coach-form.component';
+import { ClubFormComponent } from './clubs/components/club-form/club-form.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { CoachFormComponent } from './coaches/components/coach-form/coach-form.c
     FreeAgentListComponent,
     PlayerFormComponent,
     CoachFormComponent,
+    ClubFormComponent,
   ],
   imports: [
     BrowserModule,

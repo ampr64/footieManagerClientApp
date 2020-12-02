@@ -1,0 +1,55 @@
+<h1>{{isNewMode ? 'New' : 'Edit'}} club</h1>
+<form [formGroup]="clubForm" (ngSubmit)="submit()">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" formControlName="name" class="form-control" minlength="2" maxlength="100" required
+            [ngClass]="{'has-error': (clubForm.get('name').touched) ||
+                                  clubForm.get('name').dirty ||
+                                  clubForm.get('name').valid}">
+    </div>
+    <div class="form-group">
+        <label for="president">President</label>
+        <input type="text" id="president" formControlName="president" class="form-control" minlength="2" maxlength="50"
+            [ngClass]="{'has-error': (clubForm.get('president').touched) ||
+                                  clubForm.get('president').dirty ||
+                                  clubForm.get('president').valid}">
+    </div>
+    <div class="form-group">
+        <label for="league">League</label>
+        <select id="league" formControlName="leagueId">
+            <option *ngFor="let league of leagues" [value]="league.id">{{league.name}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="stadium">Stadium</label>
+        <select id="stadium" formControlName="stadiumId">
+            <option *ngFor="let stadium of stadiums" [value]="stadium.id">{{stadium.name}}</option>
+        </select>
+    </div>
+    <div class="form-group" *ngIf="coaches?.length">
+        <label for="coach">Coach</label>
+        <select id="coach" formControlName="coachId">
+            <option *ngFor="let coach of coaches" [value]="coach.id">{{coach.firstName}} {{coach.lastName}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="year-founded">Foundation year</label>
+        <input type="number" id="year-founded" formControlName="yearFounded" class="form-control" min="0" required>
+    </div>
+    <div class="form-group">
+        <label for="trophies">Trophies won</label>
+        <input type="number" id="trophies" formControlName="trophyCount" class="form-control" min="0" required>
+    </div>
+    <div class="form-group">
+        <label for="badge-image-url">Badge image URL</label>
+        <input type="text" id="badge-image-url" formControlName="badgeImageUrl">
+    </div>
+    <div class="row">
+        <div class="col-1">
+            <button type="submit" class="btn btn-primary" [disabled]="clubForm.invalid">Save</button>
+        </div>
+        <div class="col-1">
+            <button class="btn btn-danger" (click)="cancel()">Cancel</button>
+        </div>
+    </div>
+</form>
