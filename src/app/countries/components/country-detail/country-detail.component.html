@@ -15,7 +15,7 @@
                     <tbody>
                         <tr *ngFor="let club of league.clubs">
                             <td><img [src]="club.badgeImageUrl" alt="" class="badge-img"></td>
-                            <td>{{club.name}}</td>
+                            <td><a [routerLink]="['/club/', club.id]">{{club.name}}</a></td>
                             <td>{{club.trophyCount}}</td>
                             <td>{{club.squadCount}}</td>
                             <td>{{club.yearFounded}}</td>

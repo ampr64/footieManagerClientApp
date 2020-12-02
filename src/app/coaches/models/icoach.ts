@@ -4,6 +4,7 @@ export interface ICoach {
     lastName: string;
     countryId: number;
     birthDate: Date;
+    age: number;
     pictureUrl?: string | null;
     clubId?: number | null;
     salary: number;

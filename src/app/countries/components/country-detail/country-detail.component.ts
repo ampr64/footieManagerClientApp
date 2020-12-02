@@ -26,7 +26,17 @@ export class CountryDetailComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.router.snapshot.params['id'] ?? throwError("id query parameter couldn't be retrieved");
     this.getCountry();
+    this.getLeaguesWithClubs();
+  }
 
+  getCountry(): void {
+    this._service.getDetail(this.id).subscribe(
+      result => this.country = result,
+      error => console.log(error)
+    );
+  }
+
+  getLeaguesWithClubs(): void {
     this._leagueService.getByCountry(this.id).subscribe(
       result => this.leagues = result,
       error => console.log(error),
@@ -35,13 +45,6 @@ export class CountryDetailComponent implements OnInit {
         err => console.log("error fetching clubs for league " + league.id, err)
       )
       )
-    );
-  }
-
-  getCountry(): void {
-    this._service.getDetail(this.id).subscribe(
-      result => this.country = result,
-      error => console.log(error)
     );
   }
 

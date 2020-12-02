@@ -6,6 +6,7 @@ import { INewClubCommand } from './models/inewclubcommand';
 import { IClub } from './models/iclub';
 import { IUpdateClubCommand } from './models/iupdateclubcommand';
 import { ServiceHelper } from '../common/services/service-helper.service';
+import { IClubDetail } from './models/iclubdetail';
 
 @Injectable({
   providedIn: 'root'
@@ -61,7 +62,7 @@ export class ClubService {
     return _observableOf<IClub[]>(<any>null);
   }
 
-  getDetail(id: number): Observable<IClub> {
+  getDetail(id: number): Observable<IClubDetail> {
     let url_ = this._baseUrl + "api/Clubs/{id}";
     if (id === undefined || id === null)
       throw new Error("The parameter 'id' must be defined.");
@@ -83,14 +84,14 @@ export class ClubService {
         try {
           return this.processGetDetail(<any>response_);
         } catch (e) {
-          return <Observable<IClub>><any>_observableThrow(e);
+          return <Observable<IClubDetail>><any>_observableThrow(e);
         }
       } else
-        return <Observable<IClub>><any>_observableThrow(response_);
+        return <Observable<IClubDetail>><any>_observableThrow(response_);
     }));
   }
 
-  private processGetDetail(response: HttpResponseBase): Observable<IClub> {
+  private processGetDetail(response: HttpResponseBase): Observable<IClubDetail> {
     const status = response.status;
     const responseBlob =
       response instanceof HttpResponse ? response.body :
@@ -100,7 +101,7 @@ export class ClubService {
     if (status === 200) {
       return this._helper.blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
         let result200: any = null;
-        result200 = _responseText === "" ? null : <IClub>JSON.parse(_responseText, this._helper.jsonParseReviver);
+        result200 = _responseText === "" ? null : <IClubDetail>JSON.parse(_responseText, this._helper.jsonParseReviver);
         return _observableOf(result200);
       }));
     } else if (status !== 200 && status !== 204) {
@@ -108,7 +109,7 @@ export class ClubService {
         return this._helper.throwException("An unexpected server error occurred.", status, _responseText, _headers);
       }));
     }
-    return _observableOf<IClub>(<any>null);
+    return _observableOf<IClubDetail>(<any>null);
   }
 
   getByLeague(leagueId: number): Observable<IClub[]> {
