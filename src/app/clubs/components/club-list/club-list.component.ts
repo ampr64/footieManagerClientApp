@@ -24,7 +24,7 @@ export class ClubListComponent implements OnInit {
   };
 
   delete(id: number): void {
-    this._service.delete(id).subscribe();
+    this._service.delete(id).subscribe(() => this.listClubs());
   }
 
 }
