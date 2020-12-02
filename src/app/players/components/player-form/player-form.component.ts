@@ -48,7 +48,6 @@ export class PlayerFormComponent implements OnInit {
     this.id = this.activatedRoute.snapshot.params['id'];
     this.isNewMode = !this.id;
     this.loadClubs();
-    this.loadCountries();
 
     this.playerForm = this.formBuilder.group({
       id: this.id,

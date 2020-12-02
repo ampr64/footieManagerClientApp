@@ -16,7 +16,7 @@ export class ClubListComponent implements OnInit {
     this.listClubs();
   }
 
-  listClubs = () => {
+ listClubs(): void {
     this._service.get().subscribe(
       result => this.clubs = result,
       error => console.log(error)

@@ -7,6 +7,7 @@ import { CoachFormComponent } from './coaches/components/coach-form/coach-form.c
 import { CountryDetailComponent } from './countries/components/country-detail/country-detail.component';
 import { HomeComponent } from './home/home.component';
 import { PlayerFormComponent } from './players/components/player-form/player-form.component';
+import { PlayerListComponent } from './players/components/player-list/player-list.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'management/new-coach', component: CoachFormComponent },
   { path: 'management/edit-coach/:id', component: CoachFormComponent },
   { path: 'country/:id', component: CountryDetailComponent },
+  { path: 'management/players', component: PlayerListComponent },
   { path: 'management/new-player', component: PlayerFormComponent },
   { path: 'management/edit-player/:id', component: PlayerFormComponent }
 ];
