@@ -1,0 +1,9 @@
+<div id="stadium-card" *ngIf="stadium" class="card">
+    <div class="card-header">
+        {{stadium.name}}
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Capacity: {{stadium.capacity}}</li>
+        <li class="list-group-item">Built in: {{stadium.yearBuilt}}</li>
+    </ul>
+</div>

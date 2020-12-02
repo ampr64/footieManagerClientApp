@@ -1,0 +1,85 @@
+<h1>{{isNewMode ? 'New' : 'Edit'}} player</h1>
+<form [formGroup]="playerForm" (ngSubmit)="submit()">
+    <div class="form-group">
+        <label for="first-name">First name</label>
+        <input type="text" id="first-name" formControlName="firstName" class="form-control" minlength="2" maxlength="50"
+            required [ngClass]="{'has-error': (playerForm.get('firstName').touched) ||
+                                  playerForm.get('firstName').dirty ||
+                                  playerForm.get('firstName').valid}">
+    </div>
+    <div class="form-group">
+        <label for="last-name">Last name</label>
+        <input type="text" id="last-name" formControlName="lastName" class="form-control" minlength="2" maxlength="50"
+            required [ngClass]="{'has-error': (playerForm.get('lastName').touched) ||
+                                  playerForm.get('lastName').dirty ||
+                                  playerForm.get('lastName').valid}">
+    </div>
+    <label for="position">Position</label>
+    <select class="form-control" formControlName="position" name="position" id="position">
+        <option *ngFor="let position of positions" [value]="position">{{positionEnum[position]}}</option>
+    </select>
+    <label for="foot">Foot</label>
+    <select name="foot" id="foot" formControlName="foot" class="form-control">
+        <option *ngFor="let foot of feet" [value]="foot">{{footEnum[foot]}}</option>
+    </select>
+    <div class="form-group">
+        <label for="birthdate">Date of birth</label>
+        <div class="input-group">
+            <input class="form-control" placeholder="yyyy-mm-dd" formControlName="birthDate" ngbDatepicker
+                #d="ngbDatepicker" [(ngModel)]="selectedBirthDate">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar" fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="height">Height (cm)</label>
+        <input type="number" id="height" formControlName="height" class="form-control" min="140" max="250">
+    </div>
+    <div class="form-group">
+        <label for="weight">Weight (kg)</label>
+        <input type="number" id="weight" formControlName="weight" class="form-control" min="45" max="180">
+    </div>
+    <div class="form-group">
+        <label for="country">Nationality</label>
+        <select id="country" formControlName="countryId">
+            <option *ngFor="let country of countries" [value]="country.id">{{country.name}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="club">Club</label>
+        <select id="club" formControlName="clubId">
+            <option *ngFor="let club of clubs" [value]="club.id">{{club.name}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="squad-number">Squad number</label>
+        <input type="number" id="squad-number" formControlName="squadNumber" class="form-control" min="1" max="99">
+    </div>
+    <div class="form-group">
+        <label for="market-value">Market value</label>
+        <input type="number" id="market-value" formControlName="marketValue" class="form-control" min="0">
+    </div>
+    <div class="form-group">
+        <label for="salary">Monthly Salary</label>
+        <input type="number" id="salary" formControlName="salary" class="form-control" min="0.00" step="1000">
+    </div>
+    <div class="form-group">
+        <label for="picture-url">Picture URL</label>
+        <input type="text" id="picture-url" formControlName="pictureUrl">
+    </div>
+    <div class="row">
+        <div class="col-1">
+            <button type="submit" class="btn btn-primary" [disabled]="playerForm.invalid">Save</button>
+        </div>
+        <div class="col-1">
+            <button class="btn btn-danger" (click)="cancel()">Cancel</button>
+        </div>
+    </div>
+</form>

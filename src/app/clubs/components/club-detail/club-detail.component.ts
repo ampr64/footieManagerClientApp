@@ -14,9 +14,8 @@ import { IClubDetail } from '../../models/iclubdetail';
 })
 export class ClubDetailComponent implements OnInit {
   club: IClubDetail;
-  stadium?: IStadium;
-  coach?: ICoach;
-  squad?: IPlayer[];
+  Position: Position;
+  Foot: Foot;
 
   constructor(private _service: ClubService, private router: ActivatedRoute) { }
 
@@ -24,22 +23,9 @@ export class ClubDetailComponent implements OnInit {
     const id = this.router.snapshot.params['id'] ?? throwError("id query parameter couldn't be retrieved")
 
     this._service.getDetail(id).subscribe(
-      result => {
-        this.club = result;
-        this.stadium = result.stadium;
-        this.coach = result.coach;
-        this.squad = result.squad;
-      },
+      result => this.club = result,
       error => console.log(error)
     );
-  }
-  
-  getPositionName(value: number): string {
-    return Position[value];
-  }
-
-  getFootName(value: number): string {
-    return Foot[value];
   }
 
 }

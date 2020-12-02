@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="club">
     <div class="club-badge">
         <img src="{{club.badgeImageUrl}}" alt="">
     </div>
@@ -9,43 +9,9 @@
         <span>Trophies: {{club.trophyCount}}</span>
         <span>Squad size: {{club.squadCount}}</span>
     </div>
-    <div id="stadium-detail" *ngIf="stadium" class="card">
-        <div class="card-header">
-            {{stadium.name}}
-        </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">Capacity: {{stadium.capacity}}</li>
-            <li class="list-group-item">Built in: {{stadium.yearBuilt}}</li>
-        </ul>
-    </div>
-    <div id="coach-detail" *ngIf="coach" class="card">
-        <img src="{{coach.pictureUrl}}" alt="" class="card-img-top">
-        <div class="card-body">
-            <h5 class="card-title">
-                {{coach.firstName}} {{coach.lastName}}
-            </h5>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Birth: {{coach.birthDate | date:'dd-MM-yy'}}</li>
-                <li class="list-group-item">Age: {{coach.age}}</li>
-                <li class="list-group-item">Salary: {{coach.salary | currency:'USD':'symbol':'1.2-2'}}</li>
-            </ul>
-        </div>
-    </div>
-    <div id="squad" class="card-deck" *ngFor="let player of squad">
-        <div class="card">
-            <img src="{{player.pictureUrl}}" alt="" class="card-img-top">
-            <div class="card-body">
-                <h5 class="card-body">
-                    {{player.firstName}} {{player.lastName}}
-                </h5>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Position: {{getPositionName(player.position)}}</li>
-                    <li class="list-group-item">Birth: {{player.birthDate | date:'dd-MM-yy'}}</li>
-                    <li class="list-group-item">Age: {{player.age}}</li>
-                    <li class="list-group-item">Foot: {{getFootName(player.foot)}}</li>
-                    <li class="list-group-item">Salary: {{player.salary | currency:'USD':'symbol':'1.2-2'}}</li>
-                </ul>
-            </div>
-        </div>
+    <app-stadium-card [stadium]="club.stadium"></app-stadium-card>
+    <app-coach-card [coach]="club.coach"></app-coach-card>
+    <div>
+        <app-club-squad [squad]="club.squad"></app-club-squad>
     </div>
 </div>

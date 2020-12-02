@@ -15,6 +15,12 @@ import { StadiumDetailComponent } from './stadiums/components/stadium-detail/sta
 import { StadiumListComponent } from './stadiums/components/stadium-list/stadium-list.component';
 import { NavbarComponent } from './common/components/navbar/navbar.component';
 import { CountryDetailComponent } from './countries/components/country-detail/country-detail.component';
+import { PlayerCardComponent } from './players/components/player-card/player-card.component';
+import { ClubSquadComponent } from './clubs/components/club-squad/club-squad.component';
+import { CoachCardComponent } from './coaches/components/coach-card/coach-card.component';
+import { StadiumCardComponent } from './stadiums/components/stadium-card/stadium-card.component';
+import { FreeAgentListComponent } from './players/components/free-agent-list/free-agent-list.component';
+import { PlayerFormComponent } from './players/components/player-form/player-form.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +32,12 @@ import { CountryDetailComponent } from './countries/components/country-detail/co
     StadiumListComponent,
     NavbarComponent,
     CountryDetailComponent,
+    PlayerCardComponent,
+    ClubSquadComponent,
+    CoachCardComponent,
+    StadiumCardComponent,
+    FreeAgentListComponent,
+    PlayerFormComponent,
   ],
   imports: [
     BrowserModule,

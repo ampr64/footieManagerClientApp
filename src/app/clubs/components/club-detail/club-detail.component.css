@@ -17,11 +17,3 @@
   max-width: 150px;
   width: 100%;
 }
-
-#stadium-detail {
-    align-self: flex-end;
-}
-
-#coach-detail {
-    align-self: center;
-}

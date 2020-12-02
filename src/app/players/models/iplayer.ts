@@ -10,7 +10,7 @@ export interface IPlayer {
     position: Position;
     height: number;
     weight: number;
-    salary: number;
+    salary?: number | null;
     marketValue?: number;
     squadNumber?: number;
     foot: Foot;
@@ -22,8 +22,8 @@ export enum Foot {
 }
 
 export enum Position {
-    "Goalkeeper" = 1,
-    "Defender" = 2,
-    "Midfielder" = 3,
-    "Forward" = 4
+    Goalkeeper = 1,
+    Defender = 2,
+    Midfielder = 3,
+    Forward = 4
 }

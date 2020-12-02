@@ -1,0 +1,14 @@
+<div class="card" *ngIf="player">
+    <img src="{{player.pictureUrl}}" alt="" class="card-img-top">
+    <div class="card-body">
+        <h5 class="card-body">
+            {{player.firstName}} {{player.lastName}}
+        </h5>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{getPositionName(player.position)}}</li>
+            <li class="list-group-item">{{player.birthDate | date:'dd-MM-yyyy'}} ({{player.age}})</li>
+            <li class="list-group-item">{{getFootName(player.foot)}} foot</li>
+            <li class="list-group-item">{{player.salary | currency:'USD':'symbol':'1.2-2'}}/month</li>
+        </ul>
+    </div>
+</div>
