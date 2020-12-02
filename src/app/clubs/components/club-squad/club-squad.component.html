@@ -1,5 +1,5 @@
 <div class="container">
     <div id="squad" class="card-deck" *ngFor="let player of squad">
-        <app-player-card [player]="player"></app-player-card>
+        <app-player-card [player]="player" [playerCountry]="getPlayerCountry(player.id)"></app-player-card>
     </div>
 </div>

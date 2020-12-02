@@ -7,74 +7,64 @@ import { ClubService } from 'src/app/clubs/club.service';
 import { IClub } from 'src/app/clubs/models/iclub';
 import { CountryService } from 'src/app/countries/country.service';
 import { ICountry } from 'src/app/countries/models/icountry';
-import { Foot, IPlayer, Position } from '../../models/iplayer';
-import { PlayerService } from '../../player.service';
+import { CoachService } from '../../coach.service';
+import { ICoach } from '../../models/icoach';
 
 @Component({
-  selector: 'app-player-form',
-  templateUrl: './player-form.component.html',
-  styleUrls: ['./player-form.component.css'],
+  selector: 'app-coach-form',
+  templateUrl: './coach-form.component.html',
+  styleUrls: ['./coach-form.component.css'],
   providers: [DatePipe]
 })
-export class PlayerFormComponent implements OnInit {
+export class CoachFormComponent implements OnInit {
   id: number;
-  redirectionUrl = '/players';
-  playerForm: FormGroup;
+  redirectionUrl = '/coaches';
+  coachForm: FormGroup;
   isNewMode: boolean;
   clubs: IClub[];
   selectedClub: number | null;
   countries: ICountry[];
   selectedCountry: number | null;
-  positionEnum = Position;
-  positions = Object.values(Position).filter(x => typeof x === "number");
-  footEnum = Foot;
-  feet = Object.values(Foot).filter(x => typeof x === "number");
   selectedBirthDate: NgbDate;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(
+    private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private dateParser: NgbDateParserFormatter,
     private datePipe: DatePipe,
-    private _service: PlayerService,
+    private _service: CoachService,
     private _clubService: ClubService,
-    private _countryService: CountryService) { }
-  private squadNumberValidators = [
-    Validators.min(1),
-    Validators.max(99)
-  ];
+    private _countryService: CountryService
+  ) { }
 
   ngOnInit(): void {
     this.id = this.activatedRoute.snapshot.params['id'];
     this.isNewMode = !this.id;
-    this.loadClubs();
+    this.loadAvailableClubs();
     this.loadCountries();
 
-    this.playerForm = this.formBuilder.group({
+    this.coachForm = this.formBuilder.group({
       id: this.id,
       firstName: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(2)]],
       lastName: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(2)]],
       countryId: [null],
       birthDate: [new NgbDate(2000, 1, 1), Validators.required],
       pictureUrl: '',
-      clubId: null,
-      position: '',
+      clubId: [0],
       height: [140, [Validators.required, Validators.min(140), Validators.max(250)]],
       weight: [45, [Validators.required, Validators.min(45), Validators.max(180)]],
-      salary: [null],
-      marketValue: [null],
-      squadNumber: [null],
-      foot: ''
-    });
+      salary: [null]
+    }, );
 
     if (!this.isNewMode) {
       this.patchForm()
     }
   }
 
-  loadClubs(): void {
+  loadAvailableClubs(): void {
     this._clubService.get().subscribe(
-      clubs => this.clubs = clubs,
+      clubs => this.clubs = clubs.filter(x => !x.coachId),
       error => console.log(error)
     );
   }
@@ -89,7 +79,7 @@ export class PlayerFormComponent implements OnInit {
   patchForm(): void {
     this._service.getDetail(this.id).subscribe(
       player => {
-        this.playerForm.patchValue(player);
+        this.coachForm.patchValue(player);
         this.selectedBirthDate = this.convertToNgbDate(player.birthDate);
       },
       error => console.log(error),
@@ -102,15 +92,15 @@ export class PlayerFormComponent implements OnInit {
   }
 
   submit(): void {
-    if (this.playerForm.valid) {
-      let player = { ...this.playerForm.value } as IPlayer;
-      const formBirthDate = this.playerForm.value.birthDate;
-      player.birthDate = new Date(formBirthDate.year, formBirthDate.month - 1, formBirthDate.day);
+    if (this.coachForm.valid) {
+      let coach = { ...this.coachForm.value } as ICoach;
+      const formBirthDate = this.coachForm.value.birthDate;
+      coach.birthDate = new Date(formBirthDate.year, formBirthDate.month - 1, formBirthDate.day);
       if (this.isNewMode) {
-        this._service.new(player).subscribe();
+        this._service.new(coach).subscribe();
       }
       else {
-        this._service.update(this.id, player).subscribe();
+        this._service.update(this.id, coach).subscribe();
       }
     }
   }
@@ -118,4 +108,5 @@ export class PlayerFormComponent implements OnInit {
   cancel(): void {
 
   }
+
 }

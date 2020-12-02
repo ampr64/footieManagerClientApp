@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
-
+import { NgxFlagIconCssModule } from 'ngx-flag-icon-css';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +21,7 @@ import { CoachCardComponent } from './coaches/components/coach-card/coach-card.c
 import { StadiumCardComponent } from './stadiums/components/stadium-card/stadium-card.component';
 import { FreeAgentListComponent } from './players/components/free-agent-list/free-agent-list.component';
 import { PlayerFormComponent } from './players/components/player-form/player-form.component';
+import { CoachFormComponent } from './coaches/components/coach-form/coach-form.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { PlayerFormComponent } from './players/components/player-form/player-for
     StadiumCardComponent,
     FreeAgentListComponent,
     PlayerFormComponent,
+    CoachFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,8 @@ import { PlayerFormComponent } from './players/components/player-form/player-for
     ReactiveFormsModule,
     AppRoutingModule,
     RouterModule,
-    NgbModule
+    NgbModule,
+    NgxFlagIconCssModule
   ],
   providers: [],
   bootstrap: [AppComponent]

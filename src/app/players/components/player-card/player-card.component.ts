@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ICountry } from 'src/app/countries/models/icountry';
 import { Foot, IPlayer, Position } from '../../models/iplayer';
 
 @Component({
@@ -8,20 +9,14 @@ import { Foot, IPlayer, Position } from '../../models/iplayer';
 })
 export class PlayerCardComponent implements OnInit {
   @Input() player: IPlayer;
-  Position: Position;
-  Foot: Foot;
+  @Input() playerCountry: ICountry;
+  positionEnum = Position;
+  footEnum = Foot;
 
   constructor() { }
 
   ngOnInit(): void {
-  }
 
-  getPositionName(value: number): string {
-    return Position[value];
-  }
-
-  getFootName(value: number): string {
-    return Foot[value];
   }
 
 }

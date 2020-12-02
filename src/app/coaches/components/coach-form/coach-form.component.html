@@ -1,27 +1,19 @@
-<h1>{{isNewMode ? 'New' : 'Edit'}} player</h1>
-<form [formGroup]="playerForm" (ngSubmit)="submit()">
+<h1>{{isNewMode ? 'New' : 'Edit'}} coach</h1>
+<form [formGroup]="coachForm" (ngSubmit)="submit()">
     <div class="form-group">
         <label for="first-name">First name</label>
         <input type="text" id="first-name" formControlName="firstName" class="form-control" minlength="2" maxlength="50"
-            required [ngClass]="{'has-error': (playerForm.get('firstName').touched) ||
-                                  playerForm.get('firstName').dirty ||
-                                  playerForm.get('firstName').valid}">
+            required [ngClass]="{'has-error': (coachForm.get('firstName').touched) ||
+                                  coachForm.get('firstName').dirty ||
+                                  coachForm.get('firstName').valid}">
     </div>
     <div class="form-group">
         <label for="last-name">Last name</label>
         <input type="text" id="last-name" formControlName="lastName" class="form-control" minlength="2" maxlength="50"
-            required [ngClass]="{'has-error': (playerForm.get('lastName').touched) ||
-                                  playerForm.get('lastName').dirty ||
-                                  playerForm.get('lastName').valid}">
+            required [ngClass]="{'has-error': (coachForm.get('lastName').touched) ||
+                                  coachForm.get('lastName').dirty ||
+                                  coachForm.get('lastName').valid}">
     </div>
-    <label for="position">Position</label>
-    <select class="form-control" formControlName="position" name="position" id="position">
-        <option *ngFor="let position of positions" [value]="position">{{positionEnum[position]}}</option>
-    </select>
-    <label for="foot">Foot</label>
-    <select name="foot" id="foot" formControlName="foot" class="form-control">
-        <option *ngFor="let foot of feet" [value]="foot">{{footEnum[foot]}}</option>
-    </select>
     <div class="form-group">
         <label for="birthdate">Date of birth</label>
         <div class="input-group">
@@ -59,14 +51,6 @@
         </select>
     </div>
     <div class="form-group">
-        <label for="squad-number">Squad number</label>
-        <input type="number" id="squad-number" formControlName="squadNumber" class="form-control" min="1" max="99">
-    </div>
-    <div class="form-group">
-        <label for="market-value">Market value</label>
-        <input type="number" id="market-value" formControlName="marketValue" class="form-control" min="0">
-    </div>
-    <div class="form-group">
         <label for="salary">Monthly Salary</label>
         <input type="number" id="salary" formControlName="salary" class="form-control" min="0.00" step="1000">
     </div>
@@ -76,7 +60,7 @@
     </div>
     <div class="row">
         <div class="col-1">
-            <button type="submit" class="btn btn-primary" [disabled]="playerForm.invalid">Save</button>
+            <button type="submit" class="btn btn-primary" [disabled]="coachForm.invalid">Save</button>
         </div>
         <div class="col-1">
             <button class="btn btn-danger" (click)="cancel()">Cancel</button>

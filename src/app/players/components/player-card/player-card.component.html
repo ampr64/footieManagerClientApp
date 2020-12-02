@@ -5,9 +5,10 @@
             {{player.firstName}} {{player.lastName}}
         </h5>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">{{getPositionName(player.position)}}</li>
+            <li *ngIf="playerCountry" class="list-group-item"><span class="flag-icon flag-icon-{{playerCountry.isoCode}}"></span></li>
+            <li class="list-group-item">{{positionEnum[player.position]}}</li>
             <li class="list-group-item">{{player.birthDate | date:'dd-MM-yyyy'}} ({{player.age}})</li>
-            <li class="list-group-item">{{getFootName(player.foot)}} foot</li>
+            <li class="list-group-item">{{footEnum[player.foot]}} foot</li>
             <li class="list-group-item">{{player.salary | currency:'USD':'symbol':'1.2-2'}}/month</li>
         </ul>
     </div>
