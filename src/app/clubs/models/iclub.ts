@@ -4,9 +4,9 @@ export interface IClub {
     president?: string | null;
     stadiumId?: number | null;
     leagueId?: number;
-    yearFounded?: number;
-    trophyCount?: number;
+    yearFounded: number;
+    trophyCount: number;
     badgeImageUrl?: string | null;
-    squadCount?: number;
+    squadCount: number;
     coachId: number;
 }
