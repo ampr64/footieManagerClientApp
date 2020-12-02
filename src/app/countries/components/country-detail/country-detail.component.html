@@ -1,6 +1,6 @@
 <div class="league-container">
     <div *ngFor="let league of leagues">
-        <ngb-accordion #acc="ngbAccordion" [closeOthers]="true">
+        <ngb-accordion #acc="ngbAccordion" [closeOthers]="true" class="league-title">
             <ngb-panel title="{{league.name}}">
                 <ng-template ngbPanelContent>
                     <table class="table" *ngIf="league.clubs">
