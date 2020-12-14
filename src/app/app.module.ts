@@ -24,6 +24,7 @@ import { PlayerFormComponent } from './players/components/player-form/player-for
 import { CoachFormComponent } from './coaches/components/coach-form/coach-form.component';
 import { ClubFormComponent } from './clubs/components/club-form/club-form.component';
 import { PlayerListComponent } from './players/components/player-list/player-list.component';
+import { ApiAuthorizationModule } from 'src/api-authorization/api-authorization.module';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { PlayerListComponent } from './players/components/player-list/player-lis
     AppRoutingModule,
     RouterModule,
     NgbModule,
-    NgxFlagIconCssModule
+    NgxFlagIconCssModule,
+    ApiAuthorizationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
